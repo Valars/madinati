@@ -1,0 +1,5 @@
+<root>
+  <item name='android.content.Context CONTEXT_INCLUDE_CODE'>
+    <annotation name='java.lang.annotation.Deprecated' />
+  </item>
+</root>
