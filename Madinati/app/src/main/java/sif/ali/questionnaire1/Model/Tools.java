@@ -13,7 +13,10 @@ import java.util.Map;
  */
 public final class Tools {
 
-    static public HashMap<String, Object> getPasswordUserDefault(){
+    static public HashMap<String, Object> getPasswordUserDefault(String pseudonyme,String email){
+        String pseudo;
+        if(pseudonyme == null) pseudo = "null";
+        else pseudo = pseudonyme;
         HashMap<String, Object> userStruct = new HashMap<String, Object>();
         userStruct.put("createdAt", ServerValue.TIMESTAMP);
         userStruct.put("updatedAt", ServerValue.TIMESTAMP);
@@ -21,6 +24,8 @@ public final class Tools {
         userStruct.put("role", 10);
         userStruct.put("deprecated", false);
         userStruct.put("provider", "password");
+        userStruct.put("pseudonyme", pseudo);
+        userStruct.put("email", email);
         return userStruct;
     }
     static public HashMap<String, Object> getAnonymousUserDefault(){

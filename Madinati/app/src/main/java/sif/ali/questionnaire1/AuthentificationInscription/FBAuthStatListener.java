@@ -8,6 +8,7 @@ import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 
 import sif.ali.questionnaire1.AuthentificationInscription.LogIn;
+import sif.ali.questionnaire1.FirstActivity;
 
 /**
  * Created by romaing on 30/03/2016.
@@ -23,8 +24,6 @@ public class FBAuthStatListener implements  Firebase.AuthStateListener{
         this.dstAct = dstAct;
     }
 
-    public FBAuthStatListener(){}
-
     @Override
     public void onAuthStateChanged(AuthData authData) {
         if(authData != null){                               //Cas ou il y a eu connexion
@@ -34,8 +33,8 @@ public class FBAuthStatListener implements  Firebase.AuthStateListener{
             //if(srcAct!=null && dstAct!=null) srcAct.startActivity(new Intent(srcAct, dstAct));
         }
         else{                                               //Cas ou il y a déco ou pas de connection
-            Log.d("[LOGS]", "user deconnected");
-            if(!LogIn.class.isInstance(srcAct)) srcAct.startActivity(new Intent(srcAct, LogIn.class));  //Si déco on retourne au menu de co
+            Log.d("[LOGS]", "user desconnected");
+            if(!LogIn.class.isInstance(srcAct)) srcAct.startActivity(new Intent(srcAct, FirstActivity.class));  //Si déco on retourne au menu de co
         }
     }
 }

@@ -8,10 +8,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageButton;
 
-import sif.ali.questionnaire1.AuthentificationInscription.FBAuthResultHandler;
+import com.firebase.client.Firebase;
+
 import sif.ali.questionnaire1.AuthentificationInscription.LogIn;
 import sif.ali.questionnaire1.AuthentificationInscription.SignUp;
-import sif.ali.questionnaire1.AuthentificationInscription.SignUp_;
 
 public class FirstActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,7 +21,7 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Firebase.setAndroidContext(this);
 
         setContentView(R.layout.activity_first);
 

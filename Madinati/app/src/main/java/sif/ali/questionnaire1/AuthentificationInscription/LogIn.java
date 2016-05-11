@@ -26,9 +26,8 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
     EditText userName, password;
     TextView tvregisterLink;
     Firebase firebase;
-    private Context lecontext;
     TextView bAnonymous;
-    FBAuthResultHandlerAno onAuth;
+    FBAuthResultHandler onAuth;
     ProgressBar lConnection;
     int test;
     @Override
@@ -36,18 +35,14 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
 
         /*******************/
-        Firebase.setAndroidContext(this);
-        onAuth = new FBAuthResultHandlerAno(this, MenuPrincipal.class);
-        lecontext=this;
-
-
-              //On ajoute Firebase
+        onAuth = new FBAuthResultHandler(this, MenuPrincipal.class);
         firebase = new Firebase(AppProperties.ADRESS);               //on crée une ref vers notre serveur
-        //firebase.unauth();  //A virer, juste pour déco l'utilisateur pour les tests de co
-        //firebase.addAuthStateListener(new FBAuthStatListener(this, MenuPrincipal.class));   //Listener sur un evenement de déco ou connection, aussi levé si on lance l'appli et qu'on est pas co
+        firebase.unauth();  //A virer, juste pour déco l'utilisateur pour les tests de co
+        firebase.addAuthStateListener(new FBAuthStatListener(this, MenuPrincipal.class));   //Listener sur un evenement de déco ou connection, aussi levé si on lance l'appli et qu'on est pas co
 
         /*******************/
         setContentView(R.layout.activity_log);
+
         bLogin=(ImageButton)findViewById(R.id.bLogin);
         password=(EditText)findViewById(R.id.logPassword);
         userName=(EditText)findViewById(R.id.logUserName);
@@ -57,7 +52,6 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
         tvregisterLink.setOnClickListener(this);
         bAnonymous.setOnClickListener(this);
         lConnection = (ProgressBar) findViewById(R.id.lConnection);
-
     }
 
     @Override
@@ -66,11 +60,12 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener{
             case R.id.bLogin:
                 //final InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 //imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-                final String un = userName.getText().toString(),
-                        pa = password.getText().toString();
-                firebase.authWithPassword(un, pa, new FBAuthResultHandler(this, MenuPrincipal.class));
+                Log.d("[LOGS]", "Connection password");
+                lConnection.setVisibility(View.VISIBLE);
+                firebase.authWithPassword(userName.getText().toString(), password.getText().toString(), onAuth);
                 break;
             case R.id.bAnonymous:
+                Log.d("[LOGS]", "Connection anonyme");
                 lConnection.setVisibility(View.VISIBLE);
                 firebase.authAnonymously(onAuth);
                 break;
