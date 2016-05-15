@@ -51,7 +51,10 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" >
         </activity>
-        <activity android:name=".AuthentificationInscription.SignUp" >
+        <activity android:name=".AuthentificationInscription.SignUp"
+            android:label="@string/title_activity_register"
+            android:parentActivityName="sif.ali.questionnaire1.AuthentificationInscription.LogIn" >>
+
         </activity>
         <activity android:name=".MesProblems.MesProblemes" >
         </activity>

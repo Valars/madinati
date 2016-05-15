@@ -22,7 +22,7 @@ public class FirstActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(this);
-
+        Firebase.getDefaultConfig().setPersistenceEnabled(true);
         setContentView(R.layout.activity_first);
 
         versLogIn=(ImageButton)findViewById(R.id.buttonVersLogIn);
